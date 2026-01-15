@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --color-body: #f1f4fb;
+  --color-panel: #ffffff;
+  --color-panel-muted: #edf2ff;
+  --color-border: #dde3f5;
+  --color-outline: #c8d1ee;
+  --color-text: #1f2431;
+  --color-muted: #6f7688;
+  --color-brand: #1d5bff;
+  --color-brand-dark: #0f3abd;
+  --color-accent: #14c9c9;
+  --color-success-bg: #d9f5e8;
+  --color-success-text: #1f8655;
+  --color-alert: #ff4d4d;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-soft: 0 25px 60px rgba(19, 37, 103, 0.12);
+  --shadow-card: 0 10px 35px rgba(23, 38, 86, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Work Sans', sans-serif;
+  background: var(--color-body);
+  color: var(--color-text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-brand-dark);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+.app-surface {
+  padding: clamp(16px, 4vw, 56px);
+}
+
+.app-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+  padding: clamp(24px, 4vw, 40px);
+  margin-bottom: clamp(24px, 5vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.app-brand h1 {
+  margin: 4px 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.app-brand p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.app-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  font-weight: 600;
+}
+
+.app-nav {
+  display: inline-flex;
+  gap: 12px;
+  background: #f3f6ff;
+  padding: 10px;
+  border-radius: 999px;
+}
+
+.app-nav__link {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--color-muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.app-nav__link.is-active {
+  background: var(--color-brand);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(29, 91, 255, 0.35);
+}
+
+@media (max-width: 640px) {
+  .app-nav {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .app-nav__link {
+    flex: 1 1 calc(50% - 12px);
+    text-align: center;
+  }
+}

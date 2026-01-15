@@ -21,6 +21,17 @@ const normalizeStatus = (value) => {
   return map[raw] || raw || 'por_asignar'
 }
 
+const normalizeId = (value) => (value === null || value === undefined ? '' : String(value).trim())
+
+const resolveRowAnalystId = (row) =>
+  normalizeId(
+    row?.assigned_analyst_id ||
+      row?.assigned_analyst ||
+      row?.analyst_id ||
+      row?.analystId ||
+      row?.assignedAnalystId,
+  )
+
 const notifications = [
   { id: 1, type: 'Agua', accent: 'blue' },
   { id: 2, type: 'Alimento', accent: 'green' },
@@ -44,7 +55,7 @@ const emptyForm = {
 }
 
 const AnalystTasks = () => {
-  const { user, accessToken, logout, loading: authLoading } = useAuth()
+  const { user, accessToken, logout, profile, loading: authLoading } = useAuth()
   const displayName = user || 'Analista'
   const [showNotifications, setShowNotifications] = useState(false)
   const [showCompleteModal, setShowCompleteModal] = useState(false)
@@ -68,6 +79,8 @@ const AnalystTasks = () => {
     [samples],
   )
 
+  const resolveAnalystId = () => normalizeId(profile?.id || profile?.user_id || user?.id)
+
   const loadSamples = async () => {
     if (authLoading) return
     if (!accessToken) {
@@ -84,6 +97,16 @@ const AnalystTasks = () => {
       const payload = await res.json()
       if (!res.ok) throw new Error(payload?.error || 'No se pudieron cargar las muestras')
       const rows = payload?.data || []
+      const analystId = resolveAnalystId()
+      const assignedRows = analystId
+        ? rows.filter((r) => resolveRowAnalystId(r) === analystId)
+        : rows
+      if (analystId && !assignedRows.length && rows.length) {
+        setInfo('No tienes muestras asignadas actualmente.')
+      }
+      if (!analystId) {
+        setInfo('No se pudo determinar tu usuario. Inicia sesión nuevamente.')
+      }
       const mapRow = (row) => ({
         id: row.id || row.code,
         code: row.code,
@@ -97,7 +120,7 @@ const AnalystTasks = () => {
         phone: row.phone,
         address: row.address,
       })
-      setSamples(rows.map(mapRow))
+      setSamples(assignedRows.map(mapRow))
     } catch (err) {
       setError(err.message || 'No se pudieron cargar las muestras')
     } finally {

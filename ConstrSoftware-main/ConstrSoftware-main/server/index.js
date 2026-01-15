@@ -468,20 +468,36 @@ app.post('/api/samples', requireAuth, async (req, res) => {
   return res.json({ data: row })
 })
 
-// List analysts to allow assignment
+// List analysts to allow assignment (accept both old/es and new/en slugs)
 app.get('/api/analysts', requireAuth, async (_req, res) => {
-  const { data, error } = await supabaseAdmin
+  // Primary: role column (enum) in English
+  const primary = await supabaseAdmin
     .from('profiles')
-    .select('id, full_name, roles!inner(slug)')
-    .eq('roles.slug', 'analista')
+    .select('id, full_name, role, active')
+    .eq('role', 'analyst')
     .eq('active', true)
     .order('full_name', { ascending: true })
 
-  if (error) {
-    return res.status(400).json({ error: error.message })
+  if (!primary.error) {
+    return res.json({ data: primary.data })
   }
 
-  return res.json({ data })
+  console.error('list analysts failed (role column), falling back to roles join', primary.error)
+
+  // Fallback: join roles table
+  const fallback = await supabaseAdmin
+    .from('profiles')
+    .select('id, full_name, roles!inner(slug), active')
+    .eq('roles.slug', 'analyst')
+    .eq('active', true)
+    .order('full_name', { ascending: true })
+
+  if (fallback.error) {
+    console.error('list analysts fallback failed', fallback.error)
+    return res.status(400).json({ error: fallback.error.message })
+  }
+
+  return res.json({ data: fallback.data })
 })
 
 // Assign analyst and due date -> moves to "esperando_analisis"

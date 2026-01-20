@@ -1,0 +1,357 @@
+.analyst-tasks-actions {
+  position: relative;
+}
+
+.analyst-tasks-notifications {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: min(320px, 90vw);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 16px 30px rgba(16, 24, 64, 0.2);
+  border: 1px solid #e8edf7;
+  padding: 12px 14px;
+  z-index: 10;
+}
+
+.analyst-tasks-notifications-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.analyst-tasks-notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.analyst-tasks-notification {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f7f9ff;
+}
+
+.analyst-tasks-notification-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.analyst-tasks-notification-icon.is-blue {
+  background: #3f82ff;
+}
+
+.analyst-tasks-notification-icon.is-green {
+  background: #3cc27a;
+}
+
+.analyst-tasks-notification-icon.is-orange {
+  background: #ff9800;
+}
+
+.analyst-tasks-notification-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.analyst-tasks-notification-meta {
+  font-size: 0.85rem;
+  color: #6f7688;
+}
+
+.analyst-tasks-content {
+  margin-top: 12px;
+}
+
+.analyst-tasks-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.analyst-tasks-primary {
+  background: #2f63ff;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(47, 99, 255, 0.2);
+  border: none;
+}
+
+.analyst-tasks-secondary {
+  background: #e9edf5;
+  color: #4a5164;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 1px solid #dbe3f6;
+}
+
+.analyst-tasks-section {
+  margin-bottom: 40px;
+}
+
+.analyst-tasks-section-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.02rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  gap: 10px;
+  color: #1f2633;
+  letter-spacing: 0.3px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot--blue {
+  background: #2763ff;
+}
+
+.dot--orange {
+  background: #ff9800;
+}
+
+.analyst-tasks-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 300px));
+  gap: 18px;
+  justify-content: flex-start;
+}
+
+.analyst-tasks-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 20px rgba(22, 45, 96, 0.08);
+  border: 1px solid #e3e7f2;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.analyst-tasks-card--blue {
+  border-top: 4px solid #2e6bff;
+}
+
+.analyst-tasks-card--orange {
+  border-top: 4px solid #f5a524;
+}
+
+.analyst-tasks-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.analyst-tasks-card-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.92rem;
+  color: #6c7489;
+}
+
+.analyst-tasks-card-row strong {
+  color: #1f2633;
+  font-size: 1rem;
+}
+
+.analyst-tasks-card-note {
+  margin-top: 4px;
+  color: #4a5164;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.analyst-tasks-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.analyst-tasks-card-actions.single {
+  justify-content: flex-start;
+}
+
+.analyst-tasks-card-actions .analyst-tasks-secondary,
+.analyst-tasks-card-actions .analyst-tasks-primary {
+  flex: 1 1 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.analyst-tasks-empty {
+  color: #7a8099;
+  font-size: 1rem;
+  padding: 18px 0 8px;
+}
+
+.analyst-tasks-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 20, 44, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 20;
+}
+
+.analyst-tasks-modal {
+  width: min(860px, 100%);
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 32px 32px;
+  box-shadow: 0 30px 60px rgba(15, 28, 74, 0.25);
+  border: 1px solid #e3e9f5;
+}
+
+.analyst-tasks-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.analyst-tasks-modal-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.analyst-tasks-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #6f7688;
+}
+
+.analyst-tasks-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.analyst-tasks-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px 20px;
+}
+
+.analyst-tasks-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.analyst-tasks-field span {
+  font-weight: 600;
+  color: #222;
+}
+
+.analyst-tasks-field input,
+.analyst-tasks-field select {
+  border: 1px solid #c9d6ff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.analyst-tasks-field input[readonly],
+.analyst-tasks-field select:disabled {
+  background: #ededed;
+  color: #888;
+  border-color: #e2e2e2;
+}
+
+.analyst-tasks-field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #6c78a4 50%),
+    linear-gradient(135deg, #6c78a4 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.analyst-tasks-results-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #2f63ff;
+  margin-bottom: 12px;
+}
+
+.analyst-tasks-table {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e9f3;
+}
+
+.analyst-tasks-table-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #edf1f7;
+  font-size: 0.9rem;
+}
+
+.analyst-tasks-table-row:last-child {
+  border-bottom: none;
+}
+
+.analyst-tasks-table-head {
+  background: #eef2fb;
+  font-weight: 700;
+  color: #2c3553;
+}
+
+.analyst-tasks-table-row input {
+  border: 1px solid #d5dbea;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+.analyst-tasks-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.analyst-tasks-form-actions--center {
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .analyst-tasks-modal {
+    padding: 24px;
+  }
+  .analyst-tasks-table-row {
+    grid-template-columns: 1fr;
+  }
+}
